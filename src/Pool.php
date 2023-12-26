@@ -1,6 +1,6 @@
 <?php
 
-namespace Wpjscc\MySQL;
+namespace Reactphp\Framework\MySQL;
 
 use React\MySQL\Factory;
 use React\EventLoop\LoopInterface;

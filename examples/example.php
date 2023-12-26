@@ -1,24 +1,25 @@
 <?php
 
-require_once './vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
-use Wpjscc\MySQL\Pool;
+use Reactphp\Framework\MySQL\Pool;
 use React\MySQL\QueryResult;
 use React\EventLoop\Loop;
 
 $pool = new Pool(getenv('MYSQL_URI') ?: 'username:password@host/databasename?timeout=5', [
     'min_connections' => 2, // 10 connection
     'max_connections' => 10, // 10 connection
-    'max_wait_queue' => 70, // how many sql in queue
-    'wait_timeout' => 5,// wait time include response time
+    'max_wait_queue' => 100, // how many sql in queue
+    'wait_timeout' => 5, // wait time include response time
     'keep_alive' => 60
 ]);
 
 query($pool);
 // queryStream($pool);
 
-function query($pool) {
-    for ($i=0; $i < 90; $i++) { 
+function query($pool)
+{
+    for ($i = 0; $i < 90; $i++) {
         $pool->query('select * from blog')->then(function (QueryResult $command) use ($i) {
             echo "query:$i\n";
             if (isset($command->resultRows)) {
@@ -37,15 +38,15 @@ function query($pool) {
             // the query was not executed successfully
             echo 'Error: ' . $error->getMessage() . PHP_EOL;
         });
-        
     }
 }
 
-function queryStream($pool){
-    for ($i=0; $i < 90; $i++) { 
-        (function($pool,$i){
+function queryStream($pool)
+{
+    for ($i = 0; $i < 90; $i++) {
+        (function ($pool, $i) {
             $stream = $pool->queryStream('select * from blog');
-           
+
             $stream->on('data', function ($data) use ($i) {
                 // echo "queryStream:$i\n";
                 // print_r($data);
@@ -54,12 +55,9 @@ function queryStream($pool){
                 echo 'Error: ' . $err->getMessage() . PHP_EOL;
             });
             $stream->on('end', function () use ($i) {
-                echo 'Completed.'.$i . PHP_EOL;
+                echo 'Completed.' . $i . PHP_EOL;
             });
-            
-           
         })($pool, $i);
-        
     }
 }
 
@@ -71,16 +69,16 @@ function queryStream($pool){
 Loop::addPeriodicTimer(2, function () use ($pool) {
     // query($pool);
     // queryStream($pool);
-    echo 'pool_count:'. $pool->getPoolCount() . PHP_EOL;
-    echo 'idleConnectionCount:'. $pool->idleConnectionCount() . PHP_EOL;
+    echo 'pool_count:' . $pool->getPoolCount() . PHP_EOL;
+    echo 'idleConnectionCount:' . $pool->idleConnectionCount() . PHP_EOL;
 });
 
 $pool->transaction(function ($connection) {
     // throw new Exception("Error Processing Request", 1);
 
     return \React\Async\await($connection->query("INSERT INTO blog_test (content) VALUES ('hello world success')"));
-})->then(function($result){
+})->then(function ($result) {
     var_dump($result);
-}, function($error){
+}, function ($error) {
     var_dump($error->getMessage());
 });
