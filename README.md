@@ -1,4 +1,4 @@
-# reactphp-framework-mysql-pool
+# reactphp-x-mysql-pool
 
 ```
     +----------------+
@@ -15,7 +15,7 @@
 ## install
 
 ```
-composer require reactphp-framework/mysql-pool -vvv
+composer require reactphp-x/mysql-pool -vvv
 ```
 
 
@@ -25,7 +25,7 @@ composer require reactphp-framework/mysql-pool -vvv
 
 require_once './vendor/autoload.php';
 
-use Reactphp\Framework\MySQL\Pool;
+use ReactphpX\MySQL\Pool;
 use React\MySQL\QueryResult;
 use React\EventLoop\Loop;
 

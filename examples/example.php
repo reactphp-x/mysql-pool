@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use Reactphp\Framework\MySQL\Pool;
+use ReactphpX\MySQL\Pool;
 use React\MySQL\QueryResult;
 use React\EventLoop\Loop;
 

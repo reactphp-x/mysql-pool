@@ -1,13 +1,13 @@
 {
-    "name":"reactphp-framework/mysql-pool",
+    "name":"reactphp-x/mysql-pool",
     "require": {
         "react/mysql": "^0.6",
         "react/async": "^4.1",
-        "reactphp-framework/pool": "^1.0"
+        "reactphp-x/pool": "^1.0"
     },
     "autoload": {
         "psr-4": {
-            "Reactphp\\Framework\\MySQL\\": "src"
+            "ReactphpX\\MySQL\\": "src"
         }
     }
 }

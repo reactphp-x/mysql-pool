@@ -1,6 +1,6 @@
 <?php
 
-namespace Reactphp\Framework\MySQL;
+namespace ReactphpX\MySQL;
 
 interface TranactionInterface
 {

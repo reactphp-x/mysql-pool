@@ -1,6 +1,6 @@
 <?php
 
-namespace Reactphp\Framework\MySQL;
+namespace ReactphpX\MySQL;
 
 use React\MySQL\Factory;
 use React\EventLoop\LoopInterface;
@@ -10,7 +10,7 @@ use React\MySQL\ConnectionInterface;
 use React\MySQL\QueryResult;
 use React\MySQL\Exception;
 use React\EventLoop\Loop;
-use Reactphp\Framework\Pool\AbstractConnectionPool;
+use ReactphpX\Pool\AbstractConnectionPool;
 use function React\Promise\resolve;
 
 class Pool extends AbstractConnectionPool implements ConnectionInterface,TranactionInterface
