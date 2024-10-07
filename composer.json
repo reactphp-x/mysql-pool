@@ -1,9 +1,9 @@
 {
     "name":"reactphp-x/mysql-pool",
     "require": {
-        "react/mysql": "^0.6",
         "react/async": "^4.1",
-        "reactphp-x/pool": "^1.0"
+        "react/mysql": "^0.7@dev",
+        "reactphp-x/pool": "^2.0@dev"
     },
     "autoload": {
         "psr-4": {
