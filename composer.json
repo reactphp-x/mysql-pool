@@ -3,7 +3,7 @@
     "require": {
         "react/async": "^4.1",
         "reactphp-x/pool": "^2.0@dev",
-        "react/mysql": "^0.7@dev"
+        "react/mysql": "^0.6"
     },
     "autoload": {
         "psr-4": {
