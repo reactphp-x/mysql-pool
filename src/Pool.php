@@ -12,6 +12,7 @@ final class Pool extends AbstractConnectionPool implements TranactionInterface
     protected function createConnection()
     {
         $connection = new MysqlClient($this->uri);
+        // $connection = (new \React\MySQL\Factory())->createLazyConnection($this->uri);
         $connection->on('close', function () use ($connection) {
             if ($this->pool->contains($connection)) {
                 $this->pool->detach($connection);
